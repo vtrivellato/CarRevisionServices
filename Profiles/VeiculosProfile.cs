@@ -11,6 +11,7 @@ namespace api.Profiles
             CreateMap<Veiculo, VeiculoReadDTO>();
             CreateMap<VeiculoCreateDTO, Veiculo>();
             CreateMap<VeiculoUpdateDTO, Veiculo>();
+            CreateMap<Veiculo, VeiculoUpdateDTO>();
         }
     }
 }

@@ -3,6 +3,7 @@ using api.Data;
 using api.DTOs;
 using api.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -87,9 +88,31 @@ namespace api.Controllers
 
         // PATCH api/veiculos/{chassi}
         [HttpPatch("{chassi}")]
-        public ActionResult DeleteVeiculo(string chassi, [FromBody] VeiculoCreateDTO veiculoUpdateDTO)
+        public ActionResult DeleteVeiculo(string chassi, [FromBody] JsonPatchDocument<VeiculoUpdateDTO> patchDocument)
         {
+            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+
+            if (veiculoFromRepository == null)
+            {
+                return NotFound();
+            }
+
+            var veiculoToPatch = _mapper.Map<VeiculoUpdateDTO>(veiculoFromRepository);
+            patchDocument.ApplyTo(veiculoToPatch, ModelState);
             
+            if (!TryValidateModel(veiculoToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(veiculoToPatch, veiculoFromRepository);
+
+            _repository.Update(veiculoFromRepository);
+
+            if (!_repository.SaveChanges())
+            {
+
+            }
 
             return NoContent();
         }

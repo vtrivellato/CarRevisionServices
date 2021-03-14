@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using api.Data;
+using api.Data.Repositories;
 using api.DTOs;
 using api.Models;
 using AutoMapper;
@@ -65,7 +65,7 @@ namespace api.Controllers
 
         // PUT api/veiculos/{chassi}
         [HttpPut("{chassi}")]
-        public ActionResult UpdateVeiculo(string chassi, [FromBody] VeiculoCreateDTO veiculoUpdateDTO)
+        public ActionResult UpdateVeiculo(string chassi, [FromBody] VeiculoUpdateDTO veiculoUpdateDTO)
         {
             var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
 

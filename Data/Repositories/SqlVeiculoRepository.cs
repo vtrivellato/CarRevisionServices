@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using api.Data.Contexts;
 using api.Models;
 
-namespace api.Data
+namespace api.Data.Repositories
 {
     public class SqlVeiculoRepository : IVeiculoRepository
     {

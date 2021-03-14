@@ -71,3 +71,5 @@
 /home/victor/Documents/.net/api/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp2.1/System.Security.Principal.Windows.dll
 /home/victor/Documents/.net/api/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll
 /home/victor/Documents/.net/api/obj/Debug/netcoreapp3.1/api.csproj.CopyComplete
+/home/victor/Documents/.net/api/bin/Debug/netcoreapp3.1/AutoMapper.dll
+/home/victor/Documents/.net/api/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

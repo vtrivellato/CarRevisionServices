@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using api.Data;
+using api.DTOs;
 using api.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -11,28 +13,35 @@ namespace api.Controllers
     public class VeiculosController : Controller
     {
         private readonly IVeiculoRepository _repository;
+        private readonly IMapper _mapper;
 
-        public VeiculosController(IVeiculoRepository repository)
+        public VeiculosController(IVeiculoRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         // GET api/veiculos/
         [HttpGet]
-        public ActionResult<IEnumerable<Veiculo>> GetAllVeiculos()
+        public ActionResult<IEnumerable<VeiculoReadDTO>> GetAllVeiculos()
         {
             var veiculos = _repository.GetAllVeiculos();
 
-            return Ok(veiculos);
+            return Ok(_mapper.Map<IEnumerable<VeiculoReadDTO>>(veiculos));
         }
 
         // GET api/veiculos/{chassi}
         [HttpGet("{chassi}")]
-        public ActionResult<Veiculo> GetVeiculoByPK(string chassi)
+        public ActionResult<VeiculoReadDTO> GetVeiculoByPK(string chassi)
         {
             var veiculo = _repository.GetveiculoByPK(chassi);
 
-            return Ok(veiculo);
+            if (veiculo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<VeiculoReadDTO>(veiculo));
         }
     }
 }

@@ -32,7 +32,8 @@ namespace api
             
             services.AddControllers();
 
-            //services.AddScoped<IVeiculoRepository, MockveiculoRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IVeiculoRepository, SqlVeiculoRepository>();
         }
 

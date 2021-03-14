@@ -9,6 +9,7 @@ namespace api.Profiles
         public VeiculosProfile()
         {
             CreateMap<Veiculo, VeiculoReadDTO>();
+            CreateMap<VeiculoCreateDTO, Veiculo>();
         }
     }
 }

@@ -1,13 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace api.Models
+namespace api.DTOs
 {
-    public class Veiculo
-    {
-        [Key]
-        public int Id { get; set; }
-        
+    public class VeiculoCreateDTO
+    {        
         [Required]
         [MaxLength(17)]
         [MinLength(17)]
@@ -32,9 +29,5 @@ namespace api.Models
         public string Cor { get; set; }
 
         public double Valor { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime? ModifiedAt { get; set; }
     }
 }

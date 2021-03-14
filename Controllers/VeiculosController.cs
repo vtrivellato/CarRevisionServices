@@ -31,7 +31,7 @@ namespace api.Controllers
         }
 
         // GET api/veiculos/{chassi}
-        [HttpGet("{chassi}")]
+        [HttpGet("{chassi}", Name="GetVeiculoByPK")]
         public ActionResult<VeiculoReadDTO> GetVeiculoByPK(string chassi)
         {
             var veiculo = _repository.GetveiculoByPK(chassi);
@@ -42,6 +42,24 @@ namespace api.Controllers
             }
 
             return Ok(_mapper.Map<VeiculoReadDTO>(veiculo));
+        }
+
+        // POST api/veiculos
+        [HttpPost]
+        public ActionResult<VeiculoReadDTO> CreateVeiculo([FromBody] VeiculoCreateDTO veiculoCreateDTO)
+        {
+            var veiculo = _mapper.Map<Veiculo>(veiculoCreateDTO);
+
+            _repository.Create(veiculo);
+
+            if (!_repository.SaveChanges())
+            {
+
+            }
+
+            var veiculoReadDTO = _mapper.Map<VeiculoReadDTO>(veiculo);
+
+            return CreatedAtRoute(nameof(GetVeiculoByPK), new { Chassi = veiculoReadDTO.Chassi }, veiculoReadDTO);
         }
     }
 }

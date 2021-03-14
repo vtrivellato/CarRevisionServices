@@ -57,5 +57,14 @@ namespace api.Data
                 DataVenda = new DateTime(2021, 03, 13)
             };
         }
+        public void Create(Veiculo veiculo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

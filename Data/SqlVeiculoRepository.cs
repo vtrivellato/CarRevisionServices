@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using api.Models;
@@ -26,6 +27,22 @@ namespace api.Data
         public Veiculo GetveiculoByPK(string chassi)
         {
             return _context.Veiculos.FirstOrDefault(p => p.Chassi == chassi);
+        }
+
+        public void Create(Veiculo veiculo)
+        {
+            if (veiculo == null)
+            {
+                throw new ArgumentNullException(nameof(veiculo));
+            }
+
+            veiculo.CreatedAt = DateTime.Now;
+            _context.Veiculos.Add(veiculo);
+        }
+
+        public bool SaveChanges()
+        {
+            return _context.SaveChanges() >= 0;
         }
     }
 }

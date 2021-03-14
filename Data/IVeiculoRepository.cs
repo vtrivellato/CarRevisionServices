@@ -5,8 +5,10 @@ namespace api.Data
 {
     public interface IVeiculoRepository
     {
-        IEnumerable<Veiculo> GetVeiculos();
+        IEnumerable<Veiculo> GetAllVeiculos();
 
-        Veiculo GetveiculoById(int id);        
+        Veiculo GetveiculoById(int id);
+
+        Veiculo GetveiculoByPK(string chassi);  
     }
 }

@@ -10,22 +10,27 @@ namespace api.Controllers
     [ApiController]
     public class VeiculosController : Controller
     {
-        private readonly MockveiculoRepository _repository = new MockveiculoRepository();
+        private readonly IVeiculoRepository _repository;
+
+        public VeiculosController(IVeiculoRepository repository)
+        {
+            _repository = repository;
+        }
 
         // GET api/veiculos/
         [HttpGet]
         public ActionResult<IEnumerable<Veiculo>> GetAllVeiculos()
         {
-            var veiculos = _repository.GetVeiculos();
+            var veiculos = _repository.GetAllVeiculos();
 
             return Ok(veiculos);
         }
 
-        // GET api/veiculos/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Veiculo> GetVeiculoById(int id)
+        // GET api/veiculos/{chassi}
+        [HttpGet("{chassi}")]
+        public ActionResult<Veiculo> GetVeiculoByPK(string chassi)
         {
-            var veiculo = _repository.GetveiculoById(id);
+            var veiculo = _repository.GetveiculoByPK(chassi);
 
             return Ok(veiculo);
         }

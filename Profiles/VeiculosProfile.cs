@@ -1,4 +1,4 @@
-using api.DTOs;
+using api.DTOs.Veiculo;
 using api.Models;
 using AutoMapper;
 

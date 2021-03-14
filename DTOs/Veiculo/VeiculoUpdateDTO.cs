@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace api.DTOs
+namespace api.DTOs.Veiculo
 {
     public class VeiculoUpdateDTO
     {

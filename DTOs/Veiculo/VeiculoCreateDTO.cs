@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace api.DTOs
+namespace api.DTOs.Veiculo
 {
     public class VeiculoCreateDTO
     {
@@ -29,6 +29,7 @@ namespace api.DTOs
         [MaxLength(8)]
         public string Cor { get; set; }
 
+        [Range(1, double.MaxValue, ErrorMessage = "The Valor field must have a value greater or equal than {1}")]
         public double Valor { get; set; }
     }
 }

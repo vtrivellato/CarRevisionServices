@@ -29,7 +29,7 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<VeiculoContext>(options => options.UseSqlServer
+            services.AddDbContext<ApiDBContext>(options => options.UseSqlServer
                 (Configuration.GetConnectionString("ApiDB")));
             
             services.AddControllers().AddNewtonsoftJson(s => {
@@ -39,6 +39,7 @@ namespace api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IVeiculoRepository, SqlVeiculoRepository>();
+            services.AddScoped<IRevisaoRepository, SqlRevisaoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

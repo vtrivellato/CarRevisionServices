@@ -9,9 +9,9 @@ namespace api.Data.Repositories
 
         IEnumerable<Veiculo> GetAllVeiculos();
 
-        Veiculo GetveiculoById(int id);
+        Veiculo GetVeiculoById(int id);
 
-        Veiculo GetveiculoByPK(string chassi);
+        Veiculo GetVeiculoByPK(string chassi);
 
         void Create(Veiculo veiculo);
 

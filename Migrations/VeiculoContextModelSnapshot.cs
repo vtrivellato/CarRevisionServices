@@ -8,8 +8,8 @@ using api.Data.Contexts;
 
 namespace api.Migrations
 {
-    [DbContext(typeof(VeiculoContext))]
-    partial class VeiculoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApiDBContext))]
+    partial class ApiDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,44 @@ namespace api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("api.Models.Revisao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Chassi")
+                        .IsRequired()
+                        .HasMaxLength(17)
+                        .HasColumnType("nvarchar(17)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataRevisao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Km")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Chassi", "Km")
+                        .IsUnique();
+
+                    b.ToTable("Revisoes");
+                });
 
             modelBuilder.Entity("api.Models.Veiculo", b =>
                 {
@@ -49,7 +87,7 @@ namespace api.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Placa")
@@ -63,6 +101,23 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
+                });
+
+            modelBuilder.Entity("api.Models.Revisao", b =>
+                {
+                    b.HasOne("api.Models.Veiculo", "Veiculo")
+                        .WithMany("Revisoes")
+                        .HasForeignKey("Chassi")
+                        .HasPrincipalKey("Chassi")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Veiculo");
+                });
+
+            modelBuilder.Entity("api.Models.Veiculo", b =>
+                {
+                    b.Navigation("Revisoes");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using api.Data.Repositories;
-using api.DTOs;
+using api.DTOs.Veiculo;
 using api.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
@@ -24,7 +24,7 @@ namespace api.Controllers
 
         // GET api/veiculos/
         [HttpGet]
-        public ActionResult<IEnumerable<VeiculoReadDTO>> GetAllVeiculos()
+        public ActionResult<IEnumerable<VeiculoReadDTO>> Get()
         {
             var veiculos = _repository.GetAllVeiculos();
 
@@ -32,10 +32,10 @@ namespace api.Controllers
         }
 
         // GET api/veiculos/{chassi}
-        [HttpGet("{chassi}", Name="GetVeiculoByPK")]
-        public ActionResult<VeiculoReadDTO> GetVeiculoByPK(string chassi)
+        [HttpGet("{chassi}", Name="GetVeiculoById")]
+        public ActionResult<VeiculoReadDTO> GetVeiculoById(string chassi)
         {
-            var veiculo = _repository.GetveiculoByPK(chassi);
+            var veiculo = _repository.GetVeiculoByPK(chassi);
 
             if (veiculo == null)
             {
@@ -47,7 +47,7 @@ namespace api.Controllers
 
         // POST api/veiculos
         [HttpPost]
-        public ActionResult<VeiculoReadDTO> CreateVeiculo([FromBody] VeiculoCreateDTO veiculoCreateDTO)
+        public ActionResult<VeiculoReadDTO> Post([FromBody] VeiculoCreateDTO veiculoCreateDTO)
         {
             var veiculo = _mapper.Map<Veiculo>(veiculoCreateDTO);
 
@@ -60,14 +60,14 @@ namespace api.Controllers
 
             var veiculoReadDTO = _mapper.Map<VeiculoReadDTO>(veiculo);
 
-            return CreatedAtRoute(nameof(GetVeiculoByPK), new { Chassi = veiculoReadDTO.Chassi }, veiculoReadDTO);
+            return CreatedAtRoute(nameof(GetVeiculoById), new { Chassi = veiculoReadDTO.Chassi }, veiculoReadDTO);
         }
 
         // PUT api/veiculos/{chassi}
         [HttpPut("{chassi}")]
-        public ActionResult UpdateVeiculo(string chassi, [FromBody] VeiculoUpdateDTO veiculoUpdateDTO)
+        public ActionResult Put(string chassi, [FromBody] VeiculoUpdateDTO veiculoUpdateDTO)
         {
-            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+            var veiculoFromRepository = _repository.GetVeiculoByPK(chassi);
 
             if (veiculoFromRepository == null)
             {
@@ -88,9 +88,9 @@ namespace api.Controllers
 
         // PATCH api/veiculos/{chassi}
         [HttpPatch("{chassi}")]
-        public ActionResult DeleteVeiculo(string chassi, [FromBody] JsonPatchDocument<VeiculoUpdateDTO> patchDocument)
+        public ActionResult Patch(string chassi, [FromBody] JsonPatchDocument<VeiculoUpdateDTO> patchDocument)
         {
-            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+            var veiculoFromRepository = _repository.GetVeiculoByPK(chassi);
 
             if (veiculoFromRepository == null)
             {
@@ -119,9 +119,9 @@ namespace api.Controllers
 
         // DELETE api/veiculos/{chassi}
         [HttpDelete("{chassi}")]
-        public ActionResult DeleteVeiculo(string chassi)
+        public ActionResult Delete(string chassi)
         {
-            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+            var veiculoFromRepository = _repository.GetVeiculoByPK(chassi);
 
             if (veiculoFromRepository == null)
             {

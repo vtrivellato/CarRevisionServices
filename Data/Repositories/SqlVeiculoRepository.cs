@@ -8,9 +8,9 @@ namespace api.Data.Repositories
 {
     public class SqlVeiculoRepository : IVeiculoRepository
     {
-        private readonly VeiculoContext _context;
+        private readonly ApiDBContext _context;
 
-        public SqlVeiculoRepository(VeiculoContext context)
+        public SqlVeiculoRepository(ApiDBContext context)
         {
             _context = context;
         }
@@ -20,12 +20,12 @@ namespace api.Data.Repositories
             return _context.Veiculos.ToList();
         }
 
-        public Veiculo GetveiculoById(int id)
+        public Veiculo GetVeiculoById(int id)
         {
             return _context.Veiculos.FirstOrDefault(p => p.Id == id);
         }
 
-        public Veiculo GetveiculoByPK(string chassi)
+        public Veiculo GetVeiculoByPK(string chassi)
         {
             return _context.Veiculos.FirstOrDefault(p => p.Chassi == chassi);
         }

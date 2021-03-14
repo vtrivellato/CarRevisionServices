@@ -9,7 +9,7 @@ using api.Data.Contexts;
 
 namespace api.Migrations
 {
-    [DbContext(typeof(VeiculoContext))]
+    [DbContext(typeof(ApiDBContext))]
     [Migration("20210314025752_InitialMigration")]
     partial class InitialMigration
     {

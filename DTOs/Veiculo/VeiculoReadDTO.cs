@@ -1,6 +1,6 @@
 using System;
 
-namespace api.DTOs
+namespace api.DTOs.Veiculo
 {
     public class VeiculoReadDTO
     {        

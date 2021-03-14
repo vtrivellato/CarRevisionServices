@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace api.Models
@@ -37,5 +38,8 @@ namespace api.Models
         public DateTime CreatedAt { get; set; }
 
         public DateTime? ModifiedAt { get; set; }
+
+
+        public IEnumerable<Revisao> Revisoes { get; set; }
     }
 }

@@ -11,8 +11,12 @@ namespace api.Data
 
         Veiculo GetveiculoById(int id);
 
-        Veiculo GetveiculoByPK(string chassi);  
+        Veiculo GetveiculoByPK(string chassi);
 
         void Create(Veiculo veiculo);
+
+        void Update(Veiculo veiculo);
+
+        void Delete(Veiculo veiculo);
     }
 }

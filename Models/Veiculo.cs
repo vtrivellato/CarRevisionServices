@@ -22,6 +22,7 @@ namespace api.Models
         public DateTime DataVenda { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "The Fabricante field must have a value greater or equal than {1}")]
         public int Fabricante { get; set; }
 
         [MaxLength(8)]

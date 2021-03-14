@@ -3,13 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.DTOs
 {
-    public class VeiculoCreateDTO
+    public class VeiculoUpdateDTO
     {
-        [Required]
-        [MaxLength(17)]
-        [MinLength(17)]
-        public string Chassi { get; set; }
-
         [MaxLength(7)]
         [MinLength(7)]
         [Required]
@@ -27,8 +22,11 @@ namespace api.DTOs
         public string Modelo { get; set; }
 
         [MaxLength(8)]
+        [Required]
         public string Cor { get; set; }
 
+        [Required]
+        [Range(1, double.MaxValue, ErrorMessage = "The Valor field must have a value greater or equal than {1}")]
         public double Valor { get; set; }
     }
 }

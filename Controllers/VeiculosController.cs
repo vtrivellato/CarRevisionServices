@@ -61,5 +61,58 @@ namespace api.Controllers
 
             return CreatedAtRoute(nameof(GetVeiculoByPK), new { Chassi = veiculoReadDTO.Chassi }, veiculoReadDTO);
         }
+
+        // PUT api/veiculos/{chassi}
+        [HttpPut("{chassi}")]
+        public ActionResult UpdateVeiculo(string chassi, [FromBody] VeiculoCreateDTO veiculoUpdateDTO)
+        {
+            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+
+            if (veiculoFromRepository == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(veiculoUpdateDTO, veiculoFromRepository);
+
+            _repository.Update(veiculoFromRepository);
+
+            if (!_repository.SaveChanges())
+            {
+
+            }
+
+            return NoContent();
+        }
+
+        // PATCH api/veiculos/{chassi}
+        [HttpPatch("{chassi}")]
+        public ActionResult DeleteVeiculo(string chassi, [FromBody] VeiculoCreateDTO veiculoUpdateDTO)
+        {
+            
+
+            return NoContent();
+        }
+
+        // DELETE api/veiculos/{chassi}
+        [HttpDelete("{chassi}")]
+        public ActionResult DeleteVeiculo(string chassi)
+        {
+            var veiculoFromRepository = _repository.GetveiculoByPK(chassi);
+
+            if (veiculoFromRepository == null)
+            {
+                return NotFound();
+            }
+
+            _repository.Delete(veiculoFromRepository);
+
+            if (!_repository.SaveChanges())
+            {
+
+            }
+
+            return NoContent();
+        }
     }
 }

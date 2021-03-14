@@ -39,6 +39,21 @@ namespace api.Data
             veiculo.CreatedAt = DateTime.Now;
             _context.Veiculos.Add(veiculo);
         }
+        
+        public void Update(Veiculo veiculo)
+        {
+            veiculo.ModifiedAt = DateTime.Now;
+        }
+        
+        public void Delete(Veiculo veiculo)
+        {
+            if (veiculo == null)
+            {
+                throw new ArgumentNullException(nameof(veiculo));
+            }
+
+            _context.Veiculos.Remove(veiculo);
+        }
 
         public bool SaveChanges()
         {

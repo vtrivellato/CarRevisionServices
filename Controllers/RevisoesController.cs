@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using api.Data.Contexts;
 using api.Data.Repositories;
 using api.DTOs.Revisao;
@@ -25,9 +27,14 @@ namespace api.Controllers
 
         // GET api/revisoes/
         [HttpGet]
-        public ActionResult<IEnumerable<RevisaoReadDTO>> Get()
+        public ActionResult<IEnumerable<RevisaoReadDTO>> Get([FromQuery] string chassi, [FromQuery] double? km, [FromQuery] DateTime? dataRevisao, [FromQuery] double? valor)
         {
             var revisoes = _repository.GetAllRevisoes();
+
+            revisoes = !string.IsNullOrWhiteSpace(chassi) ? revisoes.Where(r => r.Chassi == chassi) : revisoes;
+            revisoes = km != null && km > 0 ? revisoes.Where(r => r.Km == km) : revisoes;
+            revisoes = dataRevisao != null ? revisoes.Where(r => r.DataRevisao == dataRevisao) : revisoes;
+            revisoes = valor != null && valor > 0 ? revisoes.Where(r => r.Valor == valor) : revisoes;
 
             return Ok(_mapper.Map<IEnumerable<RevisaoReadDTO>>(revisoes));
         }

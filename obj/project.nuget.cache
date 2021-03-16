@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fB8KGlJkrNb4Fzs5GkZ+130cIjTCUoJLYc8uZJEo4Y7jjA7QM2HntA7y+RGh8BwjC5gT9siMOkB794VM7CnyMA==",
+  "dgSpecHash": "uc57zxaV7jw1xsh5XDSknrinaPOqCPUPnEymm8asE1GHm9FeEvCsQrj34svfnFan5Qh0Y2cjvR1AJN/5DlU5Aw==",
   "success": true,
-  "projectFilePath": "/home/victor/Documents/.net/api/api.csproj",
+  "projectFilePath": "/home/victor/Documents/dotnet/api/api.csproj",
   "expectedPackageFiles": [
     "/home/victor/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/home/victor/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

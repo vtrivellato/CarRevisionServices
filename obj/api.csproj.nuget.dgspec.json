@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/victor/Documents/.net/api/api.csproj": {}
+    "/home/victor/Documents/dotnet/api/api.csproj": {}
   },
   "projects": {
-    "/home/victor/Documents/.net/api/api.csproj": {
+    "/home/victor/Documents/dotnet/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/victor/Documents/.net/api/api.csproj",
+        "projectUniqueName": "/home/victor/Documents/dotnet/api/api.csproj",
         "projectName": "api",
-        "projectPath": "/home/victor/Documents/.net/api/api.csproj",
+        "projectPath": "/home/victor/Documents/dotnet/api/api.csproj",
         "packagesPath": "/home/victor/.nuget/packages/",
-        "outputPath": "/home/victor/Documents/.net/api/obj/",
+        "outputPath": "/home/victor/Documents/dotnet/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/victor/.nuget/NuGet/NuGet.Config"

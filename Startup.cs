@@ -29,6 +29,9 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApiDBContext>(options => options.UseSqlServer
+                (Configuration.GetConnectionString("ApiDB")));
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => 
@@ -37,9 +40,6 @@ namespace api
                         .AllowAnyHeader()
                 );
             });
-
-            services.AddDbContext<ApiDBContext>(options => options.UseSqlServer
-                (Configuration.GetConnectionString("ApiDB")));
             
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

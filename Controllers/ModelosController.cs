@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using api.Data.Contexts;
 using api.Data.Repositories;
 using api.DTOs.Modelo;
@@ -27,6 +28,7 @@ namespace api.Controllers
         public ActionResult<IEnumerable<ModeloReadDTO>> Get([FromQuery] int? fabricante)
         {
             var modelos = _repository.GetAllModelos(fabricante);
+            modelos = modelos.OrderBy(x => x.Nome);
 
             return Ok(_mapper.Map<IEnumerable<ModeloReadDTO>>(modelos));
         }

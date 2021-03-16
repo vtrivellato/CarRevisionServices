@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using api.Data.Contexts;
 using api.Data.Repositories;
 using api.DTOs.Cor;
@@ -27,6 +28,7 @@ namespace api.Controllers
         public ActionResult<IEnumerable<CorReadDTO>> Get([FromQuery] int? fabricante)
         {
             var cores = _repository.GetAllCores(fabricante);
+            cores = cores.OrderBy(x => x.Nome);
 
             return Ok(_mapper.Map<IEnumerable<CorReadDTO>>(cores));
         }
